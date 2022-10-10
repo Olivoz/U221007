@@ -9,17 +9,30 @@ app.use(express.json());
 
 function readData() {
   let data = fs.readFileSync("data.json").toString();
-  return JSON.parse(data);
+  let contactsJSON = JSON.parse(data);
+  let contacts = new Map();
+  contactsJSON.contacts.forEach((contact) => {
+    contacts.set(contact.name, contact);
+  });
+  return contacts;
 }
 
 app.get("/contacts", (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  res.send(contacts);
+  res.send({ contacts: Array.from(contacts.values()) });
 });
 
 app.post("/contacts", (req, res) => {
-  if (req.body.name && req.body.phone) {
-    contacts.contacts.push({ name: req.body.name, phone: req.body.phone });
+  const name = req.body.name;
+  const phone = req.body.phone;
+  if (name && phone) {
+    if (contacts.has(name)) {
+      res.status(400);
+      res.send("Name already taken");
+      return;
+    }
+
+    contacts.contacts.push({ name: name, phone: phone });
     res.status(200);
     res.end();
   } else {
