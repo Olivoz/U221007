@@ -26,3 +26,20 @@ function loadContacts() {
 function showContacts() {
   fetchData("contacts", loadContacts);
 }
+
+function addContact() {
+  if (!nameInput.value || !phoneInput.value) return;
+  const req = new XMLHttpRequest();
+  req.addEventListener("load", showContacts);
+  req.open("POST", "contacts");
+  req.setRequestHeader("Content-Type", "application/json");
+  req.send(
+    JSON.stringify({
+      name: nameInput.value,
+      phone: phoneInput.value,
+    })
+  );
+
+  nameInput.value = "";
+  phoneInput.value = "";
+}
