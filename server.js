@@ -22,7 +22,7 @@ app.get("/contacts", (req, res) => {
   res.send({ contacts: Array.from(contacts.values()) });
 });
 
-app.post("/contacts", (req, res) => {
+app.post("/save", (req, res) => {
   const name = req.body.name;
   const phone = req.body.phone;
   if (name && phone) {
@@ -41,7 +41,7 @@ app.post("/contacts", (req, res) => {
   }
 });
 
-app.delete("/contacts", (req, res) => {
+app.delete("/delete", (req, res) => {
   const name = req.body.name;
   if (name) {
     if (contacts.delete(name)) {
