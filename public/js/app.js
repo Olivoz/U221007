@@ -18,7 +18,7 @@ function loadContacts() {
   let contactElements = document.getElementById("contactElements");
   if (contactElements) contactElements.remove();
   contactElements = appendElement(app, "ul", null, "contactsElement");
-  data.users.forEach((user) => {
+  data.contacts.forEach((user) => {
     appendElement(contactElements, "li", `${user.name} - ${user.phone}`);
   });
 }

@@ -1,5 +1,5 @@
 {
-  "users": [
+  "contacts": [
     { "name": "Bob", "phone": "00-00 000 000" },
     { "name": "Lucas", "phone": "00-00 000 000" },
     { "name": "David", "phone": "00-00 000 000" }
