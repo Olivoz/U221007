@@ -15,11 +15,11 @@ function fetchData(URL, onLoad) {
 
 function loadContacts() {
   const data = JSON.parse(this.responseText);
-  let contactElements = document.getElementById("contactElements");
-  if (contactElements) contactElements.remove();
-  contactElements = appendElement(app, "ul", null, "contactsElement");
+  let contactsElement = document.getElementById("contactsElement");
+  if (contactsElement) contactsElement.remove();
+  contactsElement = appendElement(app, "ul", null, "contactsElement");
   data.contacts.forEach((user) => {
-    appendElement(contactElements, "li", `${user.name} - ${user.phone}`);
+    appendElement(contactsElement, "li", `${user.name} - ${user.phone}`);
   });
 }
 
