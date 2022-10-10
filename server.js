@@ -12,6 +12,7 @@ function readData() {
 }
 
 app.get("/contacts", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
   res.send(contacts);
 });
 
