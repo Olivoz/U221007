@@ -41,22 +41,6 @@ app.post("/save", (req, res) => {
   }
 });
 
-app.delete("/delete", (req, res) => {
-  const name = req.body.name;
-  if (name) {
-    if (contacts.delete(name)) {
-      res.status(200);
-      res.end();
-    } else {
-      res.status(400);
-      res.end("No contact found");
-    }
-  } else {
-    res.status(400);
-    res.send("Request must be a valid json with name");
-  }
-});
-
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
