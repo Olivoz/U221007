@@ -13,6 +13,12 @@ function readData() {
   return json.contacts;
 }
 
+function saveData() {
+  fs.writeFile("data.json", JSON.stringify({ contacts: contacts }), () => {
+    console.log("Data json saved!");
+  });
+}
+
 app.get("/contacts", (req, res) => {
   res.setHeader("Content-Type", "application/json");
   res.send({ contacts: contacts });
@@ -23,6 +29,7 @@ app.post("/save", (req, res) => {
   const phone = req.body.phone;
   if (name && phone) {
     contacts.push({ name: name, phone: phone });
+    saveData();
     res.status(200);
     res.end();
   } else {
